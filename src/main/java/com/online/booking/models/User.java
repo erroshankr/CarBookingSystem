@@ -15,6 +15,8 @@ public class User {
     private String password;
     private UserRole role;
 
+    // This is xyz's file
+
     public void setRole(UserRole role) {
         this.role = role;
     }
