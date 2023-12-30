@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 import java.sql.Timestamp;
 
-@Table(name = "Trips")
+@Table(name = "trips")
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +29,7 @@ public class Trip {
     private int paymentID;
 
     private Driver driver;
+
     private Rider rider;
 
     private TripStatus status;
@@ -38,12 +39,12 @@ public class Trip {
     }
 
     public void setStatus(TripStatus status) {
-        if(status == TripStatus.Running)
-            this.status = TripStatus.Running;
-        else if(status == TripStatus.Complete)
-            this.status = TripStatus.Complete ;
+        if(status == TripStatus.RUNNING)
+            this.status = TripStatus.RUNNING;
+        else if(status == TripStatus.COMPLETED)
+            this.status = TripStatus.COMPLETED ;
         else
-            this.status = TripStatus.Invalid;
+            this.status = TripStatus.INVALID;
 
     }
 
@@ -130,9 +131,21 @@ public class Trip {
     }
 
 
+    public Driver getDriver() {
+        return driver;
+    }
 
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
 
+    public Rider getRider() {
+        return rider;
+    }
 
+    public void setRider(Rider rider) {
+        this.rider = rider;
+    }
 
 
 
