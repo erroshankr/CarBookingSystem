@@ -1,6 +1,6 @@
 package com.online.booking.models;
 
-public enum Carcolor {
+public enum Color {
     RED,
     BLACK,
     WHITE,

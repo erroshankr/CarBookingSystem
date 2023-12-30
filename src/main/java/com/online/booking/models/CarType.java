@@ -1,6 +1,6 @@
 package com.online.booking.models;
 
-public enum Cartype {
+public enum CarType {
     SEDAN,
     HATCHBACK,
     SUV
