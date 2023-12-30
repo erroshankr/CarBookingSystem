@@ -13,7 +13,7 @@ public class Address {
     private int pincode;
     private String state;
     private String country;
-
+    private boolean save;
     private AddressType Type;
     public void setType(AddressType TYPE) {
         this.Type = TYPE;
@@ -74,5 +74,11 @@ public class Address {
         this.country = country;
     }
 
+    public boolean isSave() {
+        return save;
+    }
 
+    public void setSave(boolean save) {
+        this.save = save;
+    }
 }
