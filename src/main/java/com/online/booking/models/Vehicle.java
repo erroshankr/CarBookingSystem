@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 @Table(name = "vehicles")
 public class Vehicle {
     private CarType type;
-    private String Regno;
+    private String regNum;
     private Color color;
 
 
@@ -28,14 +28,13 @@ public class Vehicle {
         this.type = type;
     }
 
-    public String getRegno() {
-        return Regno;
+    public String getRegNum() {
+        return regNum;
     }
 
-    public void setRegno(String regno) {
-        Regno = regno;
+    public void setRegNum(String regNum) {
+        this.regNum = regNum;
     }
-
 
     public Color getColor() {
         return color;
