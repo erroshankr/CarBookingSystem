@@ -2,7 +2,7 @@ package com.online.booking.models;
 
 import jakarta.persistence.*;
 
-@Table(name ="address")
+@Table(name ="addresses")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
