@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String addressId;
+    private int addressId;
     private String line_1;
     private String line_2;
     private String city;
@@ -18,11 +18,14 @@ public class Address {
     public void setType(AddressType TYPE) {
         this.Type = TYPE;
     }
-    public String getAddressId() {
+    public AddressType getType() {
+        return Type;
+    }
+    public int getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(String addressId) {
+    public void setAddressId(int addressId) {
         this.addressId = addressId;
     }
 
