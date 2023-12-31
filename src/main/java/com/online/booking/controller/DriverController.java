@@ -1,4 +1,4 @@
-package com.online.booking.service;
+package com.online.booking.controller;
 
 import org.springframework.stereotype.Controller;
 
