@@ -1,5 +1,7 @@
 package com.online.booking.models;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -8,6 +10,7 @@ public class Review {
     private int rating;
     private String comment;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int reviewId;
 
     public int getRating() {
