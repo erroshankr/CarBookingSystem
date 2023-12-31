@@ -1,8 +1,14 @@
 package com.online.booking.models;
 
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Table(name="reviews")
 public class Review {
     private int rating;
     private String comment;
+    @Id
+    private int reviewId;
 
     public int getRating() {
         return rating;
@@ -28,5 +34,4 @@ public class Review {
         this.reviewId = reviewId;
     }
 
-    private int reviewId;
 }
