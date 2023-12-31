@@ -1,14 +1,34 @@
 package com.online.booking.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+@Entity
 @Table(name="reviews")
 public class Review {
     private int rating;
     private String comment;
+
+
+    private int reviewerID;
+
+    private int revieweeID;
+
+    public int getReviewerID() {
+        return reviewerID;
+    }
+
+    public void setReviewerID(int reviewerID) {
+        this.reviewerID = reviewerID;
+    }
+
+    public int getRevieweeID() {
+        return revieweeID;
+    }
+
+    public void setRevieweeID(int revieweeID) {
+        this.revieweeID = revieweeID;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int reviewId;

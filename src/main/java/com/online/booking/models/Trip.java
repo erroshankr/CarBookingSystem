@@ -1,12 +1,11 @@
 package com.online.booking.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.online.booking.enums.TripStatus;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
+@Entity
 @Table(name = "trips")
 public class Trip {
     @Id
@@ -27,10 +26,6 @@ public class Trip {
     private int vehicleID;  // foreign key
     private int reviewID;
     private int paymentID;
-
-    private Driver driver;
-
-    private Rider rider;
 
     private TripStatus status;
 
@@ -128,23 +123,6 @@ public class Trip {
 
     public void setReviewID(int reviewID) {
         this.reviewID = reviewID;
-    }
-
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-
-    public Rider getRider() {
-        return rider;
-    }
-
-    public void setRider(Rider rider) {
-        this.rider = rider;
     }
 
 

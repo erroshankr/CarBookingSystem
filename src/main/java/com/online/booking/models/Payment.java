@@ -1,10 +1,10 @@
 package com.online.booking.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.online.booking.enums.PaymentMode;
+import com.online.booking.enums.PaymentStatus;
+import jakarta.persistence.*;
 
+@Entity
 @Table(name="payments")
 public class Payment {
     @Id

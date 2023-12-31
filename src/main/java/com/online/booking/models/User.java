@@ -1,7 +1,11 @@
 package com.online.booking.models;
 
+import com.online.booking.enums.UserRole;
 import jakarta.persistence.*;
 
+import java.util.List;
+
+@Entity
 @Table(name = "users")
 public class User {
     private String firstName;
@@ -13,7 +17,36 @@ public class User {
     private String mobNum;
     private String email;
     private String password;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id",referencedColumnName = "locationID")
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",orphanRemoval = true)
+    private List<Address> addresses;
 
     public void setRole(UserRole role) {
         this.role = role;

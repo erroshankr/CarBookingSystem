@@ -1,7 +1,9 @@
 package com.online.booking.models;
 
+import com.online.booking.enums.AddressType;
 import jakarta.persistence.*;
 
+@Entity
 @Table(name ="addresses")
 public class Address {
     @Id
@@ -14,7 +16,22 @@ public class Address {
     private String state;
     private String country;
     private boolean save;
+
+    @Enumerated(EnumType.STRING)
     private AddressType Type;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    // SELECT user.address from user JOIN address ON user.userID=address.user
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setType(AddressType TYPE) {
         this.Type = TYPE;
     }
