@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name ="addresses")
-public class Address {
+public class AddressModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int addressId;

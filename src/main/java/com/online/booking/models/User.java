@@ -35,11 +35,11 @@ public class User {
         return role;
     }
 
-    public List<Address> getAddresses() {
+    public List<AddressModel> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<Address> addresses) {
+    public void setAddresses(List<AddressModel> addresses) {
         this.addresses = addresses;
     }
 
@@ -47,7 +47,7 @@ public class User {
     private UserRole role;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",orphanRemoval = true)
-    private List<Address> addresses;
+    private List<AddressModel> addresses;
 
     public void setRole(UserRole role) {
         this.role = role;
