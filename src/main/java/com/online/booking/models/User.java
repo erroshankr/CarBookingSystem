@@ -13,8 +13,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userID;
-    @Column(name = "mobileNo")
+    @Column(name = "mobileNo", unique = true)
     private String mobNum;
+    @Column(unique = true)
     private String email;
     private String password;
 
