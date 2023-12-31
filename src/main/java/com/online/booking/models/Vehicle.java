@@ -11,15 +11,26 @@ public class Vehicle {
     private String regNum;
     private Color color;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "driver_id",referencedColumnName = "userID")
+    private Driver driver;
 
     private String model;
     private int seatCapacity;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vehicleID;
-    private int driverID;
+
     private int locationID;
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
     public CarType getType() {
         return type;
     }
@@ -66,14 +77,6 @@ public class Vehicle {
 
     public void setVehicleID(int vehicleID) {
         this.vehicleID = vehicleID;
-    }
-
-    public int getDriverID() {
-        return driverID;
-    }
-
-    public void setDriverID(int driverID) {
-        this.driverID = driverID;
     }
 
     public int getLocationID() {
