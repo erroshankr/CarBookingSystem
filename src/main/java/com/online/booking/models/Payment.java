@@ -1,11 +1,14 @@
 package com.online.booking.models;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Table(name="payments")
 public class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  int paymentId;
     private PaymentMode paymentMode;
     private PaymentStatus status;

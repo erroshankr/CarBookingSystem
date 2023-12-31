@@ -1,11 +1,14 @@
 package com.online.booking.models;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Table(name="locations")
 public class Location {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int locationID;
     private double latitude;
     private double longitude;
