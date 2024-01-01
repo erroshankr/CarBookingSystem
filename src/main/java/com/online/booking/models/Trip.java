@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int tripID;
+    private int tripID;      // primary key
     private String source;
 
     private String destination;
@@ -23,25 +23,21 @@ public class Trip {
 
     private double fare;
 
-    private int vehicleID;  // foreign key
-    private int reviewID;
-    private int paymentID;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="vehicle_id",referencedColumnName = "vehicleID")
+    private Vehicle vehicle;  // foreign key
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "review_id",referencedColumnName = "reviewID")
+    private Review review;    // foreign key
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id",referencedColumnName = "paymentID")
+    private Payment payment;   // foreign key
+
+    @Enumerated(EnumType.STRING)
     private TripStatus status;
 
-    public TripStatus getStatus(){
-        return status;
-    }
-
-    public void setStatus(TripStatus status) {
-        if(status == TripStatus.RUNNING)
-            this.status = TripStatus.RUNNING;
-        else if(status == TripStatus.COMPLETED)
-            this.status = TripStatus.COMPLETED ;
-        else
-            this.status = TripStatus.INVALID;
-
-    }
 
     public int getTripID() {
         return tripID;
@@ -101,33 +97,35 @@ public class Trip {
     }
 
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleID(int vehicleID) {
-        this.vehicleID = vehicleID;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public int getPaymentID() {
-        return paymentID;
+    public Review getReview() {
+        return review;
     }
 
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
+    public void setReview(Review review) {
+        this.review = review;
     }
 
-    public int getReviewID() {
-        return reviewID;
+    public Payment getPayment() {
+        return payment;
     }
 
-    public void setReviewID(int reviewID) {
-        this.reviewID = reviewID;
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
+    public TripStatus getStatus() {
+        return status;
+    }
 
-
-
-
-
+    public void setStatus(TripStatus status) {
+        this.status = status;
+    }
 }
