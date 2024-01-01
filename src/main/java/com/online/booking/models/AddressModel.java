@@ -24,6 +24,9 @@ public class AddressModel {
     @ManyToOne(fetch = FetchType.LAZY)
     private UserModel user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id",referencedColumnName = "locationID")
+    private Location location;
     // SELECT user.address from user JOIN address ON user.userID=address.user
     public UserModel getUser() {
         return user;
@@ -101,5 +104,13 @@ public class AddressModel {
 
     public void setSave(boolean save) {
         this.save = save;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
