@@ -2,6 +2,7 @@ package com.online.booking.models;
 
 import com.online.booking.enums.CarType;
 import com.online.booking.enums.Color;
+import com.online.booking.enums.TripStatus;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,42 @@ public class Vehicle {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "driver_id",referencedColumnName = "userID")
     private Driver driver;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id",referencedColumnName = "locationID")
+    private Location location;
+
+    @Enumerated(EnumType.STRING)
+    private CarType cartype;
+
+    @Enumerated(EnumType.STRING)
+    private Color colour;
+
+    public CarType getCartype() {
+        return cartype;
+    }
+
+    public void setCartype(CarType cartype) {
+        this.cartype = cartype;
+    }
+
+    public Color getColour() {
+        return colour;
+    }
+
+    public void setColour(Color colour) {
+        this.colour = colour;
+    }
+
+
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     private String model;
     private int seatCapacity;
