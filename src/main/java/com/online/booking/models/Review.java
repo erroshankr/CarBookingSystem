@@ -5,56 +5,26 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="reviews")
 public class Review {
-    private int rating;
-    private String comment;
-
-
-    private int reviewerID;
-
-    private int revieweeID;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reviewer",referencedColumnName = "userID")
-    private Rider rider;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reviewee",referencedColumnName = "userID")
-    private Driver driver;
-
-    public Rider getRider() {
-        return rider;
-    }
-
-    public void setRider(Rider rider) {
-        this.rider = rider;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-
-    public int getReviewerID() {
-        return reviewerID;
-    }
-
-
-    public void setReviewerID(int reviewerID) {
-        this.reviewerID = reviewerID;
-    }
-
-    public int getRevieweeID() {
-        return revieweeID;
-    }
-
-    public void setRevieweeID(int revieweeID) {
-        this.revieweeID = revieweeID;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int reviewID;
+    private int rating;
+    private String comment;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reviewer", referencedColumnName = "userID")
+    private Rider reviewer;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reviewee", referencedColumnName = "userID")
+    private Driver reviewee;
+
+    public int getReviewID() {
+        return reviewID;
+    }
+
+    public void setReviewID(int reviewID) {
+        this.reviewID = reviewID;
+    }
 
     public int getRating() {
         return rating;
@@ -72,12 +42,19 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getReviewID() {
-        return reviewID;
+    public Rider getReviewer() {
+        return reviewer;
     }
 
-    public void setReviewID(int reviewID) {
-        this.reviewID = reviewID;
+    public void setReviewer(Rider reviewer) {
+        this.reviewer = reviewer;
     }
 
+    public Driver getReviewee() {
+        return reviewee;
+    }
+
+    public void setReviewee(Driver reviewee) {
+        this.reviewee = reviewee;
+    }
 }
