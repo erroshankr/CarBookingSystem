@@ -1,0 +1,28 @@
+Admin Dashboard: Create AdminController : Sneha
+ - Onboard a new driver : /create/driver
+ - Fetch all drivers/edit/delete : /editByID/{driverID}, /deleteByID/{driverID}, /driver/fetchAll
+
+Vehicle Controller : Anupam
+ - Fetch all vehicles/edit/delete :  /vehicle/editByID/{vehicleID}, /vehicle/deleteByID/{vehicleID}, /vehicle/fetchAll
+ - Onboard a Vehicle : /vehicle/create
+ - Assign a vehicle to a driver : GET --> vehicle/assign/driver
+
+
+Driver Dashboard: DriverController : Tushar
+ - total number of rides : /rides/all
+ - Average Review of driver : /review
+ - Total Earnings(day, week, month, total) : /totalEarning/{duration}
+
+ - Vehicle assigned : /vehicle/details : Vaibhav
+ - total ride duration(day, week, month, total) : /totalRides/{duration}
+ - Name & details  : /details
+ - Personal details update : /update/details
+
+Rider Dashboard: : Atul
+ - Profile details : /details
+ -edit personal details : /update/details
+
+
+ - total completed trips : /totalTrip/all : Bapi
+ - average reviews : /review
+ - location : /location
