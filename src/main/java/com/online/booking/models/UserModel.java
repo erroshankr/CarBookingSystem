@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserModel {
     private String firstName;
     private String lastName;
     @Id
@@ -21,13 +21,13 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id",referencedColumnName = "locationID")
-    private Location location;
+    private LocationModel location;
 
-    public Location getLocation() {
+    public LocationModel getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LocationModel location) {
         this.location = location;
     }
 

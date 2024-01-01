@@ -2,23 +2,22 @@ package com.online.booking.models;
 
 import com.online.booking.enums.CarType;
 import com.online.booking.enums.Color;
-import com.online.booking.enums.TripStatus;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "vehicles")
-public class Vehicle {
+public class VehicleModel {
     private CarType type;
     private String regNum;
     private Color color;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "driver_id",referencedColumnName = "userID")
-    private Driver driver;
+    private DriverModel driver;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id",referencedColumnName = "locationID")
-    private Location location;
+    private LocationModel location;
 
     @Enumerated(EnumType.STRING)
     private CarType cartype;
@@ -44,11 +43,11 @@ public class Vehicle {
 
 
 
-    public Location getLocation() {
+    public LocationModel getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LocationModel location) {
         this.location = location;
     }
 
@@ -60,11 +59,11 @@ public class Vehicle {
 
     private int locationID;
 
-    public Driver getDriver() {
+    public DriverModel getDriver() {
         return driver;
     }
 
-    public void setDriver(Driver driver) {
+    public void setDriver(DriverModel driver) {
         this.driver = driver;
     }
 

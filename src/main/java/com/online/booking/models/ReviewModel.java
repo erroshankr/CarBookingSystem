@@ -4,13 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="reviews")
-public class Review {
+public class ReviewModel {
     private int rating;
     private String comment;
 
 
+    @Column(name = "ReviewerId", unique = true)
     private int reviewerID;
 
+    @Column(name = "RevieweeID", unique = true)
     private int revieweeID;
 
     public int getReviewerID() {

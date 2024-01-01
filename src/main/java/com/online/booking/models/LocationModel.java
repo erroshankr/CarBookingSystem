@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="locations")
-public class Location {
+public class LocationModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "LocationId", unique = true)
     private int locationID;
     private double latitude;
     private double longitude;

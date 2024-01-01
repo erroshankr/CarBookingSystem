@@ -6,9 +6,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="payments")
-public class Payment {
+public class PaymentModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "PaymentID", unique = true)
     private  int paymentID;
     private PaymentMode paymentMode;
     private PaymentStatus status;

@@ -12,6 +12,7 @@ public class AddressModel {
     private String line_1;
     private String line_2;
     private String city;
+    @Column(name = "Pincode", unique = true)
     private int pincode;
     private String state;
     private String country;
@@ -21,14 +22,14 @@ public class AddressModel {
     private AddressType Type;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private UserModel user;
 
     // SELECT user.address from user JOIN address ON user.userID=address.user
-    public User getUser() {
+    public UserModel getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserModel user) {
         this.user = user;
     }
 

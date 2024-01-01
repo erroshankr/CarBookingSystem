@@ -6,9 +6,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "drivers")
-public class Driver extends User{
+public class DriverModel extends UserModel {
 
-    public Driver(){
+    public DriverModel(){
         this.setRole(UserRole.DRIVER);
     }
 }

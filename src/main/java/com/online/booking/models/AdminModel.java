@@ -2,9 +2,9 @@ package com.online.booking.models;
 
 import com.online.booking.enums.UserRole;
 
-public class Admin extends User{
+public class AdminModel extends UserModel {
 
-    public Admin(){
+    public AdminModel(){
         this.setRole(UserRole.ADMIN);
     }
 }
