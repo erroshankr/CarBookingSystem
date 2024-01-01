@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int paymentId;
+    private  int paymentID;
     private PaymentMode paymentMode;
     private PaymentStatus status;
     private int amount;
@@ -30,12 +30,12 @@ public class Payment {
         this.paymentMode = paymentMode;
     }
 
-    public int getPaymentId() {
-        return paymentId;
+    public int getPaymentID() {
+        return paymentID;
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setPaymentID(int paymentID) {
+        this.paymentID = paymentID;
     }
 
     public int getAmount() {
