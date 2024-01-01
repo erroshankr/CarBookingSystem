@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "trips")
-public class Trip {
+public class TripModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int tripID;      // primary key
@@ -25,15 +25,15 @@ public class Trip {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="vehicle_id",referencedColumnName = "vehicleID")
-    private Vehicle vehicle;  // foreign key
+    private VehicleModel vehicle;  // foreign key
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "review_id",referencedColumnName = "reviewID")
-    private Review review;    // foreign key
+    private ReviewModel review;    // foreign key
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id",referencedColumnName = "paymentID")
-    private Payment payment;   // foreign key
+    private PaymentModel payment;   // foreign key
 
     @Enumerated(EnumType.STRING)
     private TripStatus status;
@@ -97,27 +97,27 @@ public class Trip {
     }
 
 
-    public Vehicle getVehicle() {
+    public VehicleModel getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(VehicleModel vehicle) {
         this.vehicle = vehicle;
     }
 
-    public Review getReview() {
+    public ReviewModel getReview() {
         return review;
     }
 
-    public void setReview(Review review) {
+    public void setReview(ReviewModel review) {
         this.review = review;
     }
 
-    public Payment getPayment() {
+    public PaymentModel getPayment() {
         return payment;
     }
 
-    public void setPayment(Payment payment) {
+    public void setPayment(PaymentModel payment) {
         this.payment = payment;
     }
 

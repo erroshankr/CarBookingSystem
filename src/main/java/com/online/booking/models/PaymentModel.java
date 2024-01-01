@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="payments")
-public class Payment {
+public class PaymentModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  int paymentID;

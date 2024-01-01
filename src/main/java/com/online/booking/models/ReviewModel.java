@@ -4,19 +4,20 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="reviews")
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reviewID;
+public class ReviewModel {
     private int rating;
     private String comment;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int reviewID;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reviewer", referencedColumnName = "userID")
-    private Rider reviewer;
+    private UserModel reviewer;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reviewee", referencedColumnName = "userID")
-    private Driver reviewee;
+    private UserModel reviewee;
 
     public int getReviewID() {
         return reviewID;
@@ -42,19 +43,19 @@ public class Review {
         this.comment = comment;
     }
 
-    public Rider getReviewer() {
+    public UserModel getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(Rider reviewer) {
+    public void setReviewer(RiderModel reviewer) {
         this.reviewer = reviewer;
     }
 
-    public Driver getReviewee() {
+    public UserModel getReviewee() {
         return reviewee;
     }
 
-    public void setReviewee(Driver reviewee) {
+    public void setReviewee(DriverModel reviewee) {
         this.reviewee = reviewee;
     }
 }

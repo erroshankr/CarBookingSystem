@@ -5,10 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "drivers")
-public class Driver extends User{
+@Table(name = "admins")
+public class AdminModel extends UserModel {
 
-    public Driver(){
-        this.setRole(UserRole.DRIVER);
+    public AdminModel(){
+        this.setRole(UserRole.ADMIN);
     }
 }
