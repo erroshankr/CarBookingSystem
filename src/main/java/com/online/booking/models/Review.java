@@ -12,10 +12,33 @@ public class Review {
     private int reviewerID;
 
     private int revieweeID;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reviewer",referencedColumnName = "userID")
+    private Rider rider;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reviewee",referencedColumnName = "userID")
+    private Driver driver;
+
+    public Rider getRider() {
+        return rider;
+    }
+
+    public void setRider(Rider rider) {
+        this.rider = rider;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
 
     public int getReviewerID() {
         return reviewerID;
     }
+
 
     public void setReviewerID(int reviewerID) {
         this.reviewerID = reviewerID;
