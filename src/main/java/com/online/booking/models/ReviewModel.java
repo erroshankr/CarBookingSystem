@@ -18,27 +18,6 @@ public class ReviewModel {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reviewee", referencedColumnName = "userID")
     private UserModel reviewee;
-    private int reviewerID;
-
-    private int revieweeID;
-
-    public int getReviewerID() {
-        return reviewerID;
-    }
-
-    public void setReviewerID(int reviewerID) {
-        this.reviewerID = reviewerID;
-    }
-
-    public int getRevieweeID() {
-        return revieweeID;
-    }
-
-    public void setRevieweeID(int revieweeID) {
-        this.revieweeID = revieweeID;
-    }
-
-
 
     public int getReviewID() {
         return reviewID;

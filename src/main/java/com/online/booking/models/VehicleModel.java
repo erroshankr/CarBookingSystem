@@ -11,13 +11,13 @@ public class VehicleModel {
     private String regNum;
     private Color color;
 
+    @Column(nullable = false)
     private String model;
     private int seatCapacity;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int vehicleID;
 
-    private int locationID;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "driver_id",referencedColumnName = "userID")
     private DriverModel driver;
@@ -113,16 +113,5 @@ public class VehicleModel {
     public void setVehicleID(int vehicleID) {
         this.vehicleID = vehicleID;
     }
-
-    public int getLocationID() {
-        return locationID;
-    }
-
-    public void setLocationID(int locationID) {
-        this.locationID = locationID;
-    }
-
-
-
 
 }
