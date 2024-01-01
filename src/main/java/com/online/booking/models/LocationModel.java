@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class LocationModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "LocationId", unique = true)
     private int locationID;
     private double latitude;
     private double longitude;

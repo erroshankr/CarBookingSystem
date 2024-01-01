@@ -19,6 +19,12 @@ public class UserModel {
     private String email;
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",orphanRemoval = true)
+    private List<AddressModel> addresses;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id",referencedColumnName = "locationID")
     private LocationModel location;
@@ -43,11 +49,7 @@ public class UserModel {
         this.addresses = addresses;
     }
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",orphanRemoval = true)
-    private List<AddressModel> addresses;
 
     public void setRole(UserRole role) {
         this.role = role;

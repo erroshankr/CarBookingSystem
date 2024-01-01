@@ -8,11 +8,18 @@ public class ReviewModel {
     private int rating;
     private String comment;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int reviewID;
 
-    @Column(name = "ReviewerId", unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reviewer", referencedColumnName = "userID")
+    private UserModel reviewer;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reviewee", referencedColumnName = "userID")
+    private UserModel reviewee;
     private int reviewerID;
 
-    @Column(name = "RevieweeID", unique = true)
     private int revieweeID;
 
     public int getReviewerID() {
@@ -31,18 +38,7 @@ public class ReviewModel {
         this.revieweeID = revieweeID;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reviewID;
-    private int rating;
-    private String comment;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reviewer", referencedColumnName = "userID")
-    private Rider reviewer;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "reviewee", referencedColumnName = "userID")
-    private Driver reviewee;
 
     public int getReviewID() {
         return reviewID;
@@ -68,19 +64,19 @@ public class ReviewModel {
         this.comment = comment;
     }
 
-    public Rider getReviewer() {
+    public UserModel getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(Rider reviewer) {
+    public void setReviewer(RiderModel reviewer) {
         this.reviewer = reviewer;
     }
 
-    public Driver getReviewee() {
+    public UserModel getReviewee() {
         return reviewee;
     }
 
-    public void setReviewee(Driver reviewee) {
+    public void setReviewee(DriverModel reviewee) {
         this.reviewee = reviewee;
     }
 }

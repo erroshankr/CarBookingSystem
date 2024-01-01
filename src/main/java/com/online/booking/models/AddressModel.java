@@ -12,7 +12,7 @@ public class AddressModel {
     private String line_1;
     private String line_2;
     private String city;
-    @Column(name = "Pincode", unique = true)
+
     private int pincode;
     private String state;
     private String country;
@@ -26,7 +26,7 @@ public class AddressModel {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id",referencedColumnName = "locationID")
-    private Location location;
+    private LocationModel location;
     // SELECT user.address from user JOIN address ON user.userID=address.user
     public UserModel getUser() {
         return user;
@@ -106,11 +106,11 @@ public class AddressModel {
         this.save = save;
     }
 
-    public Location getLocation() {
+    public LocationModel getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LocationModel location) {
         this.location = location;
     }
 }
