@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header styles */
+.header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header i {
+    margin-right: 25px; /* Adjust spacing for the icon */
+    font-size: 24px; /* Adjust the font size as needed */
+    animation: colorChange 2s infinite;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #52545b;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Main Content styles */
+.main-content {
+    margin-left: 220px; /* Sidebar width + margin */
+    padding: 20px;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.logout-button {
+    margin-left: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+}
+
+@keyframes blinkColorChange {
+    0% {
+        background-color: red;
+    }
+    100% {
+        background-color: green;
+    }
+}
+
+
+@keyframes colorChange {
+    0% {
+        color: Tomato; /* Initial color */
+    }
+    50% {
+        color: Orange; /* Midway color */
+    }
+    100% {
+        color: SeaGreen; /* Final color */
+    }
+}
+/* Add this to your existing CSS styles */
+.sidebar nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px; /* Optional: Add padding for better visual appearance */
+    text-decoration: none; /* Optional: Remove underlines from links */
+    color: inherit; /* Optional: Inherit text color from parent */
+}
+
+/* Add this to your existing CSS styles */
+/* Add or update this to your existing CSS styles */
+.sidebar nav ul li {
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+}
+
+/* Update or add these styles to your existing CSS */
+.sidebar nav ul li a i {
+    margin-right: 10px;
+  animation: colorChange 2s infinite;
+}
+
+.sidebar nav ul li:nth-child(2) a i {
+    margin-right: 8px; /* Adjust spacing for the Vehicles icon */
+}
+
+.sidebar nav ul li:nth-child(3) a i {
+    margin-right: 9px; /* Adjust spacing for the Drivers icon */
+}
+
+.sidebar nav ul li:nth-child(4) a i {
+    margin-right: 10px; /* Adjust spacing for the Riders icon */
+}
+
+.sidebar nav ul li:nth-child(5) a i {
+    margin-right: 10px; /* Adjust spacing for the Trips icon */
+}
+
+.sidebar nav ul li:nth-child(6) a i {
+    margin-right: 10px; /* Adjust spacing for the Fare Management icon */
+}
+.sidebar nav ul li:nth-child(7) a i {
+    margin-right: 10px; /* Adjust spacing for the Coupons icon */
+}

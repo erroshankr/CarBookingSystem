@@ -3,5 +3,7 @@ package com.online.booking.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface DriverService {
+public interface DriverService extends UserService{
+
+    double findTotalEarnings(int driverID);
 }

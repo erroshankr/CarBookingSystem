@@ -14,10 +14,10 @@ public class ReviewModel {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reviewer", referencedColumnName = "userID")
-    private UserModel reviewer;
+    private PassengerModel reviewer;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reviewee", referencedColumnName = "userID")
-    private UserModel reviewee;
+    private DriverModel reviewee;
 
     public int getReviewID() {
         return reviewID;
@@ -43,15 +43,15 @@ public class ReviewModel {
         this.comment = comment;
     }
 
-    public UserModel getReviewer() {
+    public PassengerModel getReviewer() {
         return reviewer;
     }
 
-    public void setReviewer(RiderModel reviewer) {
+    public void setReviewer(PassengerModel reviewer) {
         this.reviewer = reviewer;
     }
 
-    public UserModel getReviewee() {
+    public DriverModel getReviewee() {
         return reviewee;
     }
 

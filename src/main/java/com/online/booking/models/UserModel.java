@@ -29,6 +29,10 @@ public class UserModel {
     @JoinColumn(name = "location_id",referencedColumnName = "locationID")
     private LocationModel location;
 
+    //location: lat,long,locID
+    // users: ....,location,.....
+    // SELECT * from locations JOIN users ON location.locationID=user.location where user.name="xyz;
+    //user.getLocation()
     public LocationModel getLocation() {
         return location;
     }

@@ -1,3 +1,45 @@
+MVC architecture : Model View Controller
+Ice-cream parlour:
+ user --->vanilla(data/Model),cone(shape/view)--> Shopkeeper(Controller)  <--> Service
+                                                   view resolver                 <--> Ice-cream box maintainer(Repository) <--> vanilla(data) : dao layer: Data Access Object layer
+                                                                                 <--> Cup/cone(View)
+                                                                                 <Cone with Ice-cream>
+
+    user --> Request  --> shopkeeper
+    user <-- Response --> shopkeeper
+
+Rider or passenger : same
+Controller : route request to correct person and resolves view
+Service: It contains business logic
+
+
+AddressService:(AddressModel)
+ create(AddressData) : converts data into model
+ updateAddress
+ deleteAddress
+ deleteAllAddress
+ findAddressByUser(userID)
+ findSavedAddressByUser(userID)
+
+UserService: DriverService & RiderService & AdminService
+  createUser(userData,role)
+  updateUser(userID,userData,role)
+  deleteUser(userID,userData,role)
+  findUser(userID,role)
+
+RiderService:
+  findTotalRides()
+
+
+
+
+
+
+
+
+
+
+
 Admin Dashboard: Create AdminController : Sneha
  - Onboard a new driver : /create/driver
  - Fetch all drivers/edit/delete : /editByID/{driverID}, /deleteByID/{driverID}, /driver/fetchAll
@@ -26,3 +68,25 @@ Rider Dashboard: : Atul
  - total completed trips : /totalTrip/all : Bapi
  - average reviews : /review
  - location : /location
+
+
+
+ ASSIGNMENT->
+ VEHICLES: createVehicle,editVehicleByID,deleteVehicleByID,fetchVehicleByID,fetchAllVehicles : Anupam
+ PASSENGERS: createPassenger,editPassengerByID,deletePassengerByID,fetchPassengerByID,fetchAllPassenger : Tushar
+ TRIPS: createTrip(TripModel trip),editTripByID(int tripID),deleteTripByID(int tripID),fetchTripByID(int tripID),fetchAllTrips() : Sneha
+ DRIVERS: createDriver,editDriverByID,deleteDriverByID,fetchDriverByID,fetchAllDriver
+
+
+ INSERT STATEMENT to insert data in all 7 tables--> Min 10 : Atul,Bapi
+
+ CalculationService: calculateTotalFare(int sourceLocID, int destLocID, CarType type) : double  -> Assign
+                     findTotalEarning(int driverID)
+                        - find all trips taken by driver
+                        - sumUp amounts for allTrips
+        SELECT SUM(amount) from trips where trip.driver_id=user.userID and user.role='driver';
+
+
+
+
+

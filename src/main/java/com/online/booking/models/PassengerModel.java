@@ -6,9 +6,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "riders")
-public class RiderModel extends UserModel {
+public class PassengerModel extends UserModel {
 
-    public RiderModel(){
+    public PassengerModel(){
         this.setRole(UserRole.RIDER);
     }
 }

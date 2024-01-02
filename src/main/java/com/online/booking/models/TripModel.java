@@ -22,6 +22,13 @@ public class TripModel {
     private Timestamp dropOffTime;
 
     private double fare;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="driver_id",referencedColumnName = "userID")
+    private DriverModel driver;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="passenger_id",referencedColumnName = "userID")
+    private PassengerModel passenger;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="vehicle_id",referencedColumnName = "vehicleID")
@@ -127,5 +134,21 @@ public class TripModel {
 
     public void setStatus(TripStatus status) {
         this.status = status;
+    }
+
+    public DriverModel getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverModel driver) {
+        this.driver = driver;
+    }
+
+    public PassengerModel getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(PassengerModel passenger) {
+        this.passenger = passenger;
     }
 }
