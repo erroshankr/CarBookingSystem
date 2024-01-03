@@ -7,9 +7,9 @@ import java.util.List;
 
 @Service
 public interface VehicleService {
-    void createVehicle(VehicleModel vehicle);
-    boolean editVehicleByID(int vehicleID);
-    boolean deleteVehicleByID(int vehicleID);
-    boolean fetchVehicleByID(int vehicleID);
+    void createVehicle(final VehicleModel vehicle);
+    boolean editVehicleByID(final VehicleModel vehicleModel);
+    boolean deleteVehicleByID(final int vehicleID);
+    boolean fetchVehicleByID(final int vehicleID);
     List<VehicleModel> fetchAllVehicles();
 }
