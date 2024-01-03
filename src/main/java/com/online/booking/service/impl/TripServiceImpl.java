@@ -21,17 +21,9 @@ public class TripServiceImpl implements TripService {
 
 
     public  TripModel createTrip(TripModel trip){
-       TripModel tripModel1 = new TripModel();
-       tripModel1.setSource(trip.getSource());
-       tripModel1.setDestination(trip.getDestination());
-       tripModel1.setPickupTime(trip.getPickupTime());
-       tripModel1.setDropOffTime(trip.getDropOffTime());
-       tripModel1.setDistance(trip.getDistance());
-       tripModel1.setFare(trip.getFare());
-       tripModel1.setReview(trip.getReview());
-        tripRepo.save(tripModel1);
+        tripRepo.save(trip);
         LOG.info("Created a new trip successfully");
-        return tripModel1;
+        return trip;
     }
 
     public boolean editTripByID(int tripID){
