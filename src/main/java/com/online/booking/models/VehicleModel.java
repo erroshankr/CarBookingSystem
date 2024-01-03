@@ -32,6 +32,13 @@ public class VehicleModel {
     @Enumerated(EnumType.STRING)
     private Color colour;
 
+    public static boolean containsKey(int vehicleID) {
+        return false;
+    }
+
+    public static void put(int vehicleID) {
+    }
+
     public CarType getCartype() {
         return cartype;
     }
@@ -114,4 +121,7 @@ public class VehicleModel {
         this.vehicleID = vehicleID;
     }
 
+    public int getId() {
+        return 0;
+    }
 }
