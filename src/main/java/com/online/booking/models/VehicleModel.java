@@ -32,6 +32,9 @@ public class VehicleModel {
     @Enumerated(EnumType.STRING)
     private Color colour;
 
+
+
+
     public CarType getCartype() {
         return cartype;
     }
@@ -113,5 +116,6 @@ public class VehicleModel {
     public void setVehicleID(int vehicleID) {
         this.vehicleID = vehicleID;
     }
+
 
 }
