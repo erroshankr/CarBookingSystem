@@ -5,10 +5,10 @@ import com.online.booking.models.VehicleModel;
 import com.online.booking.repo.VehicleRepository;
 import com.online.booking.service.VehicleService;
 
+import com.online.booking.exceptions.VehicleNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 
 import java.util.List;
@@ -23,26 +23,16 @@ public class VehicleServiceImpl  implements VehicleService {
 
     @Override
     public void createVehicle(final VehicleModel vehicle) {
-        try {
-
-            vehicleRepository.save(vehicle);
-            LOG.info("Vehicle created successfully with ID: " + vehicle.getVehicleID());
-        } catch (Exception ex) {
-            LOG.error("Exception occurred while creating a new vehicle");
-
-        }
-
+       vehicleRepository.save(vehicle);
     }
 
     @Override
-    public boolean editVehicleByID(final VehicleModel vehicleModel) {
+    public void editVehicleByID(final VehicleModel vehicleModel) throws VehicleNotFoundException {
         Optional<VehicleModel> option = vehicleRepository.findById(vehicleModel.getVehicleID());
-
+        // SELECT * from vehicles where vehicleID=12;
         if(option.isEmpty()){
-            LOG.error("No user found with userID : " + vehicleModel.getVehicleID());
-            return false;
+            throw new VehicleNotFoundException("No user found with userID : " + vehicleModel.getVehicleID());
         }
-        boolean result = false;
         VehicleModel vehicle = option.get();
         vehicle.setCartype(vehicleModel.getCartype());
         vehicle.setColour(vehicleModel.getColour());
@@ -50,56 +40,41 @@ public class VehicleServiceImpl  implements VehicleService {
         vehicle.setSeatCapacity(vehicleModel.getSeatCapacity());
         vehicle.setModel(vehicleModel.getModel());
         vehicle.setRegNum(vehicleModel.getRegNum());
-        try {
 
-            vehicleRepository.save(vehicle);
-            LOG.info("Vehicle with " + vehicleModel.getVehicleID() + " updated successfully");
-            result = true;
-        }catch (Exception ex){
-            LOG.error("Exception occurred while saving vehicle with ID " + vehicleModel.getVehicleID());
-            result = false;
-        }
-        return result;
+        vehicleRepository.save(vehicle);
     }
 
     @Override
-    public boolean deleteVehicleByID(final int vehicleID) {
+    public void deleteVehicleByID(final int vehicleID) throws VehicleNotFoundException {
 
         Optional<VehicleModel> option = vehicleRepository.findById(vehicleID);
 
         if(option.isEmpty()){
-            LOG.error("No vehicle found with ID: " + vehicleID);
-            return false;
+            throw new VehicleNotFoundException("Vehicle with ID " + vehicleID + " not found");
         }
-        boolean result = false;
-
         VehicleModel vehicle = option.get();
-        try {
-            // delete vehicle from DB
-            vehicleRepository.delete(vehicle);
-            LOG.info("Vehicle with ID " + vehicleID + " deleted successfully");
-            result = true;
-        } catch (Exception ex) {
-            LOG.error("Exception occurred while deleting vehicle with ID " + vehicleID);
-            result = false;
-        }
-        return result;
+        // delete vehicle from DB
+        vehicleRepository.delete(vehicle);
     }
 
     @Override
-    public boolean fetchVehicleByID(final int vehicleID) {
-        Optional<VehicleModel> option = vehicleRepository.findById(vehicleID);
+    public VehicleModel fetchVehicleByID(final int vehicleID) throws VehicleNotFoundException {
 
+        Optional<VehicleModel> option = vehicleRepository.findById(vehicleID);
         if (option.isEmpty()) {
-            LOG.error("No vehicle found with ID: " + vehicleID);
-            return false;
+            // return null; // 1st approach
+            // throw a custom exception
+            throw new VehicleNotFoundException("No vehicle found with ID: " + vehicleID);
         }
+
         LOG.info("Vehicle with ID " + vehicleID + " found successfully");
-        return true;
+        return option.get();
     }
 
     @Override
     public List<VehicleModel> fetchAllVehicles() {
-        return null;
+        return vehicleRepository.findAll(); // SELECT * from vehicles;
     }
 }
+
+// JPARepo(C) --> ListCrudRepo(P) --> CRUDRepo(GP)
