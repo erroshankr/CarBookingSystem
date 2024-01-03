@@ -8,8 +8,8 @@ import java.util.List;
 @Service
 public interface VehicleService {
     void createVehicle(VehicleModel vehicle);
-    void editVehicleByID(int vehicleID);
-    void deleteVehicleByID(int vehicleID);
-    VehicleModel fetchVehicleByID(int vehicleID);
+    boolean editVehicleByID(int vehicleID);
+    boolean deleteVehicleByID(int vehicleID);
+    boolean fetchVehicleByID(int vehicleID);
     List<VehicleModel> fetchAllVehicles();
 }

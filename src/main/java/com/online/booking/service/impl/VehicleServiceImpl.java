@@ -3,48 +3,47 @@ package com.online.booking.service.impl;
 import com.online.booking.models.VehicleModel;
 import com.online.booking.service.VehicleService;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import java.util.List;
 
 public class VehicleServiceImpl  implements VehicleService {
-    private Map<Integer, VehicleModel> vehicleDatabase = new HashMap<>();
+    private int lastVehicleID = -1;
+
+
     @Override
     public void createVehicle(VehicleModel vehicle) {
 
     }
 
     @Override
-    public void editVehicleByID(int vehicleID) {
-        if (VehicleModel.containsKey(vehicleID)) {
-            VehicleModel.put(vehicleID);
-        } else {
-            System.out.println("Error: Vehicle with ID " + vehicleID + " not found.");
-        }
+    public boolean editVehicleByID(int vehicleID) {
+        if(vehicleID <= lastVehicleID && vehicleID >= 0) {
 
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void deleteVehicleByID(int vehicleID) {
-        if (vehicleDatabase.containsKey(vehicleID)) {
-            vehicleDatabase.remove(vehicleID);
-        } else {
-            System.out.println("Error: Vehicle with ID " + vehicleID + " not found.");
-        }
+    public boolean deleteVehicleByID(int vehicleID) {
+        if (vehicleID <= lastVehicleID && vehicleID >= 0) {
 
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public VehicleModel fetchVehicleByID(int vehicleID) {
-        if (vehicleDatabase.containsKey(vehicleID)) {
-            return vehicleDatabase.get(vehicleID);
+    public boolean fetchVehicleByID(int vehicleID) {
+        if (vehicleID <= lastVehicleID && vehicleID >= 0) {
+
+            return true;
         } else {
-            System.out.println("Error: Vehicle with ID " + vehicleID + " not found.");
-            return null;
+            return false;
         }
     }
-
 
     @Override
     public List<VehicleModel> fetchAllVehicles() {
