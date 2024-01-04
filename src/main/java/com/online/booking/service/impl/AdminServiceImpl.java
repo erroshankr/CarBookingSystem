@@ -8,10 +8,6 @@ import com.online.booking.service.AdminService;
 
 public class AdminServiceImpl extends UserServiceImpl implements AdminService {
 
-    public void createUser(AdminModel adminModel) {
-
-    }
-
 
 
 }
