@@ -16,3 +16,7 @@ public interface UserService {
     List<UserModel> fetchAllPassenger();
 
 }
+
+
+
+//

@@ -1,9 +1,12 @@
 package com.online.booking.service.impl;
 
 import com.online.booking.exceptions.TripNotFoundException;
+import com.online.booking.exceptions.UserNotFoundException;
+import com.online.booking.models.DriverModel;
 import com.online.booking.models.TripModel;
 import com.online.booking.models.UserModel;
 import com.online.booking.repo.TripRepository;
+import com.online.booking.repo.UserRepository;
 import com.online.booking.service.TripService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,8 @@ public class TripServiceImpl implements TripService {
     private static final Logger LOG = LoggerFactory.getLogger(TripServiceImpl.class);
     @Autowired
     private TripRepository tripRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Override
@@ -70,6 +75,16 @@ public class TripServiceImpl implements TripService {
     public List<TripModel> fetchAllTrips(){
         List<TripModel> findAll  =  tripRepository.findAll();
         return findAll;
+
+    }
+
+    @Override
+    public List<TripModel> fetchAllTripsByDriverID(int driverID) throws UserNotFoundException {
+         Optional<UserModel> driver = userRepository.findById(driverID);
+         if (driver.isEmpty()){
+             throw new UserNotFoundException("User ID " + driverID + " is invalid");
+         }
+         return tripRepository.findAllByDriver(driverID);
 
     }
 }
