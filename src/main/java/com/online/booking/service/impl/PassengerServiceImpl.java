@@ -61,12 +61,17 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
         }
 
         LOG.info("Passenger  found successfully with ID :" + userID );
-        return  option.get();
+        return (PassengerModel) option.get();
     }
 
 
     @Override
     public List<UserModel> fetchAllPassenger() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public int findTotalRides(int riderID) {
+        return 0;
     }
 }
