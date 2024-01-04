@@ -1,6 +1,7 @@
 package com.online.booking.service.impl;
 
 import com.online.booking.exceptions.UserNotFoundException;
+import com.online.booking.models.PassengerModel;
 import com.online.booking.models.UserModel;
 import com.online.booking.repo.UserRepository;
 import com.online.booking.service.UserService;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
-public class UserServiceImpl implements UserService {
+public abstract class UserServiceImpl implements UserService {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -76,4 +77,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    public abstract void createUser(PassengerModel passenger);
+
+    public abstract void updateUserByID(PassengerModel passengerModel) throws UserNotFoundException;
 }
