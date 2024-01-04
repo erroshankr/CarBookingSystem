@@ -1,5 +1,6 @@
 package com.online.booking.service.impl;
 
+import com.online.booking.enums.UserRole;
 import com.online.booking.exceptions.PassengerNotFoundException;
 import com.online.booking.models.PassengerModel;
 import com.online.booking.models.UserModel;
@@ -37,7 +38,7 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
         user.setEmail(passengerModel.getEmail());
         user.setMobNum(passengerModel.getMobNum());
         userRepository.save(user);
-
+        user.setRole(UserRole.RIDER);
     }
 
     @Override
