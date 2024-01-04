@@ -72,8 +72,8 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
         return userRepository.findAll();
     }
 
-    @Override
-    public int findTotalRides(int riderID) {
-        return 0;
+
+   // public int findTotalRides(int riderID) {
+        //return 0;
     }
 }
