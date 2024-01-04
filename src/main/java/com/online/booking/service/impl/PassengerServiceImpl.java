@@ -1,7 +1,7 @@
 package com.online.booking.service.impl;
 
 import com.online.booking.enums.UserRole;
-import com.online.booking.exceptions.PassengerNotFoundException;
+import com.online.booking.exceptions.UserNotFoundException;
 import com.online.booking.models.PassengerModel;
 import com.online.booking.models.UserModel;
 import com.online.booking.repo.UserRepository;
@@ -19,11 +19,12 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
     private UserRepository userRepository;
     @Override
     public void createPassenger(final PassengerModel passenger) {
+        passenger.setRole(UserRole.RIDER);
         userRepository.save(passenger);
     }
 
     @Override
-    public void updatePassengerByID(PassengerModel passengerModel) throws PassengerNotFoundException {
+    public void updatePassengerByID(PassengerModel passengerModel) throws UserNotFoundException {
         Optional<UserModel> option = userRepository.findById(passengerModel.getUserID());
 
         if(option.isEmpty()){
@@ -37,17 +38,16 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
         user.setAddresses(passengerModel.getAddresses());
         user.setEmail(passengerModel.getEmail());
         user.setMobNum(passengerModel.getMobNum());
-        user.setRole(UserRole.RIDER);
         userRepository.save(user);
 
     }
 
     @Override
-    public void deletePassengerByID(int userID) throws PassengerNotFoundException {
+    public void deletePassengerByID(int userID) throws UserNotFoundException {
         Optional<UserModel> option = userRepository.findById(userID);
 
         if(option.isEmpty()){
-            throw new PassengerNotFoundException("Passenger not found with ID " + userID );
+            throw new UserNotFoundException("Passenger not found with ID " + userID );
         }
         UserModel passenger = option.get();
 
@@ -55,11 +55,11 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
     }
 
     @Override
-    public PassengerModel fetchPassengerByID(int userID) throws PassengerNotFoundException {
+    public PassengerModel fetchPassengerByID(int userID) throws UserNotFoundException {
         Optional<UserModel> option = userRepository.findById(userID);
         if (option.isEmpty()) {
 
-            throw new PassengerNotFoundException("Passenger not found with ID: " + userID);
+            throw new UserNotFoundException("Passenger not found with ID: " + userID);
         }
 
         LOG.info("Passenger  found successfully with ID :" + userID );
@@ -73,7 +73,7 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
     }
 
 
-   // public int findTotalRides(int riderID) {
-        //return 0;
+    public int findTotalRides(int riderID) {
+        return 0;
     }
 }
