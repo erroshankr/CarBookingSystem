@@ -88,5 +88,35 @@ Rider Dashboard: : Atul
 
 
 
+Controller: handles request & return response
+enum : custom datatype
+exception : custom error message handling
+models : java class equivalent to table in database
+repo : repository - link to database and application
+service : business logic
 
+O-O : unidirection :
+// trip has one to one relation with driver & passenger
+findTripByDriver(int driver)
 
+// findAllUserstravelledFrom(src_locId,dest_locid) : select * from trips join users on trips.passenger_id = users.userID where src=x AND dest=y and users.role=Passenger;
+// findAllTripsBySourceAndDestination
+List<UserModel>
+
+//table name: test
+//findByID(iID) : SELECT * from test where id = 23;
+//save(model) : INSERT into Test values("abc,23);
+//delete(model) : delete from test where id = model.getID;
+// findAll() : select * from test;
+// findByIdAndColor(id, color) : select * from test where id=12 AND color= red;
+// findByIdOrColor(id,color): select * from test where id=12 AND color= red;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import java.util.List;
+
+public interface TripRepository extends JpaRepository<Trip, Long> {
+
+    @Query("SELECT t FROM Trip t JOIN t.passenger u WHERE t.src = :src AND t.dest = :dest AND u.role = 'Passenger'")
+    List<Trip> findTripsBySrcDestAndPassengerRole(String src, String dest);
+}

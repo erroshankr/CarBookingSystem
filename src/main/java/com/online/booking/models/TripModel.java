@@ -11,9 +11,14 @@ public class TripModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int tripID;      // primary key
-    private String source;
 
-    private String destination;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="source_id",referencedColumnName = "locationID")
+    private LocationModel source;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="dest_id",referencedColumnName = "locationID")
+    private LocationModel destination;
 
     private double distance;
 
@@ -54,22 +59,21 @@ public class TripModel {
         this.tripID = tripID;
     }
 
-    public String getSource() {
+    public LocationModel getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(LocationModel source) {
         this.source = source;
     }
 
-    public String getDestination() {
+    public LocationModel getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
+    public void setDestination(LocationModel destination) {
         this.destination = destination;
     }
-
 
     public double getDistance() {
         return distance;

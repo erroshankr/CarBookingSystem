@@ -1,6 +1,7 @@
 package com.online.booking.service;
 
 import com.online.booking.exceptions.TripNotFoundException;
+import com.online.booking.exceptions.UserNotFoundException;
 import com.online.booking.exceptions.VehicleNotFoundException;
 import com.online.booking.models.TripModel;
 import com.online.booking.models.VehicleModel;
@@ -22,5 +23,6 @@ public interface TripService {
 
     List<TripModel> fetchAllTrips();
 
+    List<TripModel> fetchAllTripsByDriverID(final int driverID) throws UserNotFoundException;
 
 }
