@@ -14,6 +14,6 @@ public interface PassengerService extends UserService{
 
 
     PassengerModel fetchPassengerByID(int userID) throws PassengerNotFoundException;
-    List<UserModel> fetchAllPassenger();
+    List<UserModel>fetchAllPassenger();
 
 }
