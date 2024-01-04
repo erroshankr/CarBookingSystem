@@ -1,5 +1,6 @@
 package com.online.booking.service.impl;
 
+import com.online.booking.exceptions.TripNotFoundException;
 import com.online.booking.models.TripModel;
 import com.online.booking.models.UserModel;
 import com.online.booking.repo.TripRepository;
@@ -15,25 +16,21 @@ public class TripServiceImpl implements TripService {
 
     private static final Logger LOG = LoggerFactory.getLogger(TripServiceImpl.class);
     @Autowired
-    private TripRepository tripRepo;
-    @Autowired
-    private TripModel tripModel;
+    private TripRepository tripRepository;
 
 
-    public  TripModel createTrip(TripModel trip){
-        tripRepo.save(trip);
-        LOG.info("Created a new trip successfully");
-        return trip;
+    @Override
+    public  void createTrip(final TripModel trip){
+        tripRepository.save(trip);
     }
-
-    public boolean editTripByID(int tripID){
-        Optional<TripModel> updateTrip = tripRepo.findById(tripModel.getTripID());
-        if(updateTrip.isEmpty()){
-            LOG.error("No trip found with tripID : " + tripModel.getTripID());
-            return false;
+    @Override
+    public void editTripByID(final TripModel tripModel) throws TripNotFoundException {
+        Optional<TripModel> option = tripRepository.findById(tripModel.getTripID());
+        if(option.isEmpty()){
+            throw new TripNotFoundException("No trip found with tripID : " + tripModel.getTripID());
         }
-        boolean result = false;
-        TripModel trip = updateTrip.get();
+
+        TripModel trip = option.get();
 
             trip.setSource(tripModel.getSource());
             trip.setDestination(tripModel.getDestination());
@@ -41,52 +38,37 @@ public class TripServiceImpl implements TripService {
             trip.setPickupTime(tripModel.getPickupTime());
             trip.setDropOffTime(tripModel.getDropOffTime());
             trip.setReview(tripModel.getReview());
-            try {
-                tripRepo.save(trip);
-                LOG.info("Updated successfully");
-                result = true;
-            }catch(Exception e)
-            {
-                LOG.error("Exception occurred while saving trip with ID " + tripModel.getTripID());
-                result = false;
-            }
 
-        return result ;
+                tripRepository.save(trip);
     }
+    @Override
+    public  void deleteTripByID(final int tripID) throws TripNotFoundException{
 
-    public  boolean deleteTripByID(int tripID){
-        Optional<TripModel> deleteTrip = tripRepo.findById(tripModel.getTripID());
-        if(deleteTrip.isEmpty()){
-            LOG.error("No trip found with tripID : " + tripModel.getTripID());
-            return false;
+        Optional<TripModel> option = tripRepository.findById(tripID);
+        if(option.isEmpty()){
+            throw new TripNotFoundException("No trip found with tripID : " + tripID);
         }
-        boolean result = false;
-        TripModel trip = deleteTrip.get();
-          try{
-            tripRepo.deleteById(trip.getTripID());
-            LOG.info("Trip with " + trip.getTripID() + " deleted successfully");
-            result = true ;
-          }catch(Exception e){
-              LOG.error("Exception occurred while saving trip with ID " + trip.getTripID());
-              result = false;
 
-          }
-        return result ;
+        TripModel trip = option.get();
+
+            tripRepository.deleteById(trip.getTripID());
+
     }
+    @Override
+    public TripModel fetchTripByID(final int tripID)throws TripNotFoundException{
 
-    public TripModel fetchTripByID(int tripID){
-        TripModel findTrip = tripRepo.findById(tripModel.getTripID()).orElse(null);
-        if(findTrip != null)
+        Optional<TripModel> option = tripRepository.findById(tripID);
+        if(option.isEmpty())
         {
-            LOG.info("Found Successfully " + findTrip.getTripID());
-            return findTrip;
+            throw new TripNotFoundException(" No trip found with ID : " + tripID);
         }
-        return null;
+        LOG.info("Trip with ID " + tripID + " found successfully");
+        return option.get();
     }
 
-
+    @Override
     public List<TripModel> fetchAllTrips(){
-        List<TripModel> findAll  = (List<TripModel>) tripRepo.findAll();
+        List<TripModel> findAll  =  tripRepository.findAll();
         return findAll;
 
     }

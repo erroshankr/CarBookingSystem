@@ -1,21 +1,26 @@
 package com.online.booking.service;
 
+import com.online.booking.exceptions.TripNotFoundException;
+import com.online.booking.exceptions.VehicleNotFoundException;
 import com.online.booking.models.TripModel;
+import com.online.booking.models.VehicleModel;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
 public interface TripService {
 
-    TripModel createTrip(TripModel trip);
+    void createTrip(final TripModel trip);
 
-    boolean editTripByID(int tripID);
+    void editTripByID(final TripModel tripModel) throws TripNotFoundException;
 
-    boolean deleteTripByID(int tripID);
+    void deleteTripByID(final int tripID) throws TripNotFoundException;
 
-    TripModel fetchTripByID(int tripID);
+    TripModel fetchTripByID(final int tripID)throws TripNotFoundException;
 
     List<TripModel> fetchAllTrips();
+
 
 }
