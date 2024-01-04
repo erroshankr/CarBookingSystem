@@ -57,7 +57,7 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
         Optional<UserModel> option = userRepository.findById(userID);
         if (option.isEmpty()) {
 
-            throw new PassengerNotFoundException("No passenger found with ID: " + userID);
+            throw new PassengerNotFoundException("Passenger not found with ID: " + userID);
         }
 
         LOG.info("Passenger  found successfully with ID :" + userID );
