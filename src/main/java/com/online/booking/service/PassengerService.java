@@ -8,12 +8,6 @@ import java.util.List;
 
 @Service
 public interface PassengerService extends UserService{
-    void createPassenger(final PassengerModel passenger);
-    void updatePassengerByID(final PassengerModel passengerModel) throws UserNotFoundException;
-    void deletePassengerByID(int userID) throws UserNotFoundException;
 
-
-    PassengerModel fetchPassengerByID(int userID) throws UserNotFoundException;
-    List<UserModel>fetchAllPassenger();
 
 }
