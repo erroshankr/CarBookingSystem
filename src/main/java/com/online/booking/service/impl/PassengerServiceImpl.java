@@ -37,8 +37,9 @@ public class PassengerServiceImpl extends UserServiceImpl implements PassengerSe
         user.setAddresses(passengerModel.getAddresses());
         user.setEmail(passengerModel.getEmail());
         user.setMobNum(passengerModel.getMobNum());
-        userRepository.save(user);
         user.setRole(UserRole.RIDER);
+        userRepository.save(user);
+
     }
 
     @Override
