@@ -1,5 +1,6 @@
 package com.online.booking.service.impl;
 
+import com.online.booking.exceptions.UserNotFoundException;
 import com.online.booking.models.UserModel;
 import com.online.booking.repo.UserRepository;
 import com.online.booking.service.UserService;
@@ -17,50 +18,62 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public void createUser(UserModel user) {
-
+        userRepository.save(user);
     }
 
     @Override
-    public boolean updateUserByID(final UserModel userModel) {
-
-        // find if user is present in DB or not.. // SELECT * from users where userID = 12;
+    public void updateUserByID(UserModel userModel) throws UserNotFoundException {
         Optional<UserModel> option = userRepository.findById(userModel.getUserID());
-        // if user not present
+
         if(option.isEmpty()){
             LOG.error("No user found with userID : " + userModel.getUserID());
-            return false;
+
         }
-        boolean result = false;
-        // fetch user that is present by given ID
         UserModel user = option.get();
-        // update required fields
+
         user.setFirstName(userModel.getFirstName());
         user.setLastName(userModel.getLastName());
         user.setAddresses(userModel.getAddresses());
         user.setEmail(userModel.getEmail());
         user.setMobNum(userModel.getMobNum());
+        userRepository.save(user);
 
-        try {
-            // save updated user to DB
-            userRepository.save(user);
-            LOG.info("User with " + userModel.getUserID() + " updated successfully");
-            result = true;
-        }catch (Exception ex){
-            LOG.error("Exception occurred while saving user with ID " + userModel.getUserID());
-            result = false;
+    }
+
+
+    @Override
+    public void deleteUserByID(int userID)throws UserNotFoundException {
+        Optional<UserModel> option = userRepository.findById(userID);
+
+        if(option.isEmpty()){
+            throw new UserNotFoundException("Passenger not found with ID " + userID );
         }
-        return result;
+        UserModel passenger = option.get();
+
+        userRepository.delete(passenger);
     }
 
     @Override
-    public boolean deleteUserByID(int userID) {
-        return false;
+    public UserModel fetchUserByID(int userID) throws UserNotFoundException {
+        Optional<UserModel> option = userRepository.findById(userID);
+        if (option.isEmpty()) {
+
+            throw new UserNotFoundException("Passenger not found with ID: " + userID);
+        }
+
+        LOG.info("Passenger  found successfully with ID :" + userID );
+
+        return option.get();
     }
 
     @Override
-    public List<UserModel> fetchAllPassenger() {
-        return null;
+    public List<UserModel> fetchAllUser() {
+
+        return userRepository.findAll();
     }
+
+
 }
