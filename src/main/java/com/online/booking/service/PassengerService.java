@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface PassengerService extends UserService{
-    void createPassenger(PassengerModel passenger);
+    void createPassenger(final PassengerModel passenger);
     void updatePassengerByID(final PassengerModel passengerModel) throws PassengerNotFoundException;
     void deletePassengerByID(int userID) throws PassengerNotFoundException;
 
