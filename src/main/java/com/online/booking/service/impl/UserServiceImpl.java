@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
         Optional<UserModel> option = userRepository.findById(userID);
 
         if(option.isEmpty()){
-            throw new UserNotFoundException("Passenger not found with ID " + userID );
+            throw new UserNotFoundException("User not found with ID " + userID );
         }
         UserModel passenger = option.get();
 
@@ -61,10 +61,10 @@ public class UserServiceImpl implements UserService {
         Optional<UserModel> option = userRepository.findById(userID);
         if (option.isEmpty()) {
 
-            throw new UserNotFoundException("Passenger not found with ID: " + userID);
+            throw new UserNotFoundException("User not found with ID: " + userID);
         }
 
-        LOG.info("Passenger  found successfully with ID :" + userID );
+        LOG.info("User found successfully with ID :" + userID );
 
         return option.get();
     }
