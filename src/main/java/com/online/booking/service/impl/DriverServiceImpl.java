@@ -7,4 +7,8 @@ import com.online.booking.service.DriverService;
 public class DriverServiceImpl extends UserServiceImpl implements DriverService  {
 
 
+    @Override
+    public double findTotalEarnings(int driverID) {
+        return 0;
     }
+}
