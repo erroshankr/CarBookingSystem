@@ -59,22 +59,5 @@ public class CalculationServiceImpl implements CalculationService {
     double distance = locationService.calculateDistance(option1.get(), option2.get());
     return (distance * farePerKilometer);
   }
-
-
-  @Override
-  public double findTotalEarning(int driverID) throws UserNotFoundException {
-    // SELECT SUM(FARE) from trips where driver_id= driverID;
-    Optional<UserModel> user = userRepository.findByIdAndRole(driverID, UserRole.DRIVER);
-    if (user.isEmpty()){
-      throw new UserNotFoundException("Invalid UserID");
-    }
-    final DriverModel driver = (DriverModel) user.get();
-    List<TripModel> trips = tripService.fetchAllTripsByDriverID(driver.getUserID());
-    double sum = 0.0;
-    for (TripModel trip: trips) {
-       sum += trip.getFare();
-    }
-    return sum;
-  }
 }
 
