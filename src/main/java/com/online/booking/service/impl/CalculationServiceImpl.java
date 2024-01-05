@@ -43,13 +43,13 @@ public class CalculationServiceImpl implements CalculationService {
     double farePerKilometer;
     // Determine the fare rate based on the car type
     switch (carType) {
-      case CarType.HATCHBACK:
+      case HATCHBACK:
         farePerKilometer = FARE_PER_KILOMETER_HATCHBACK;
         break;
-      case CarType.SEDAN:
+      case SEDAN:
         farePerKilometer = FARE_PER_KILOMETER_SEDAN;
         break;
-      case CarType.SUV:
+      case SUV:
         farePerKilometer = FARE_PER_KILOMETER_SUV;
         break;
       default:
