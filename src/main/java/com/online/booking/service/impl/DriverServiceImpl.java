@@ -10,6 +10,7 @@ import com.online.booking.service.DriverService;
 import com.online.booking.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,20 +23,19 @@ public class DriverServiceImpl extends UserServiceImpl implements DriverService 
     private TripService tripService;
 
     @Override
-    public double findTotalEarning(int driverID) throws UserNotFoundException {
-        // SELECT SUM(FARE) from trips where driver_id= driverID;
-        Optional<UserModel> user = userRepository.findByIdAndRole(driverID, UserRole.DRIVER);
-        if (user.isEmpty()){
-            throw new UserNotFoundException("Invalid UserID");
-        }
-        final DriverModel driver = (DriverModel) user.get();
-        List<TripModel> trips = tripService.fetchAllTripsByDriverID(driver.getUserID());
-        double sum = 0.0;
-        for (TripModel trip: trips) {
-            sum += trip.getFare();
-        }
-        return sum;
+    public double findTotalEarning(int driverID, Timestamp duration) throws UserNotFoundException {
+        // find total earning of a driver today.
+        // driverID -> driverModel : not working
+        // driverID,timestamp :  All Trips by a driver
+         // SELECT * from trips where driver_id = 123 and dropofftime = duration;(last 2 day) -->> all trips by driver : Not working
+        // SELECT SUM(FARE) from trips where driver_id = 123 AND dropOddTime < 1day;
+        // tripStatus= completed
+        // SELECT SUM(FARE) from trips where driver_id = 123 AND DATE(dropOddTime) = CURDATE(); --> HW
+        return 0;
     }
 
+    // 12.05AM : 5th Jan
+    // 2AM : 5th jan
+    // 8PM : 5thjan
 
 }
