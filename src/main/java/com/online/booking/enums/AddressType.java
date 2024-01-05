@@ -30,4 +30,6 @@ public enum AddressType {  // custom defined datatype like int,string. it takes 
     public String toString() {
         return this.name;
     }
+
+    // package-class@hashcode
 }
