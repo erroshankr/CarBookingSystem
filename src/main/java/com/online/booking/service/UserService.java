@@ -8,7 +8,6 @@ import java.util.List;
 
 @Service
 public interface UserService {
-
     void createUser(final UserModel user);
 
     void updateUserByID(final UserModel userModel) throws UserNotFoundException;
