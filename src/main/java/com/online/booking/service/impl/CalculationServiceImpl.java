@@ -34,46 +34,14 @@ public class CalculationServiceImpl implements CalculationService {
   public double calculateTotalFare(int sourceLocID, int destLocID, CarType carType) throws InvalidLocationException {
 
     Optional<LocationModel> option1 = locationRepository.findById(sourceLocID);
-    Optional<LocationModel> option2 = locationRepository.findById(destLocID);
-
-    if (!option1.isPresent() || !option2.isPresent()){
-      throw new InvalidLocationException("Invalid source or destination");
-    }
-
+    Optional<LocationModel> option2 = locationRepository.findById(destLocID);m6n
     double farePerKilometer;
-    // Determine the fare rate based on the car type
-    switch (carType) {
-      case HATCHBACK:
-        farePerKilometer = FARE_PER_KILOMETER_HATCHBACK;
-        break;
-      case SEDAN:
-        farePerKilometer = FARE_PER_KILOMETER_SEDAN;
-        break;
-      case SUV:
-        farePerKilometer = FARE_PER_KILOMETER_SUV;
-        break;
-      default:
-        throw new IllegalArgumentException("Invalid car type");
-    }
-
-    double distance = locationService.calculateDistance(option1.get(), option2.get());
-    return (distance * farePerKilometer);
-  }
-
-
-  @Override
-  public double findTotalEarning(int driverID) throws UserNotFoundException {
-    // SELECT SUM(FARE) from trips where driver_id= driverID;
-    Optional<UserModel> user = userRepository.findByIdAndRole(driverID, UserRole.DRIVER);
-    if (user.isEmpty()){
-      throw new UserNotFoundException("Invalid UserID");
-    }
-    final DriverModel driver = (DriverModel) user.get();
+    // Determine the fare rate based on the car type6jbthyfjt7d
     List<TripModel> trips = tripService.fetchAllTripsByDriverID(driver.getUserID());
     double sum = 0.0;
     for (TripModel trip: trips) {
        sum += trip.getFare();
-    }
+    }dt byjtjdtvjuvjr
     return sum;
   }
 }
