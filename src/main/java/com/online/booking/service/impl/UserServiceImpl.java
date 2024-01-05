@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService {
         if(option.isEmpty()){
             throw new UserNotFoundException("User not found with ID " + userID );
         }
-        UserModel passenger = option.get();
+        UserModel user = option.get();
 
-        userRepository.delete(passenger);
+        userRepository.delete(user);
     }
 
     @Override
