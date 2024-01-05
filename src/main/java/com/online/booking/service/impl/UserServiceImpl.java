@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -77,7 +77,5 @@ public abstract class UserServiceImpl implements UserService {
     }
 
 
-    public abstract void createUser(PassengerModel passenger);
 
-    public abstract void updateUserByID(PassengerModel passengerModel) throws UserNotFoundException;
 }
